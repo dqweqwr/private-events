@@ -1,0 +1,7 @@
+<h1><%= @user.email %></h1>
+<h2>User's events:</h2>
+<ul>
+  <% @user.events.each do |event| %>
+    <li><%= render "events/event_container", event: event %></li>
+  <% end %>
+</ul>

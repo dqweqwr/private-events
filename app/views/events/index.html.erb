@@ -1,1 +1,7 @@
-events index
+<h1>Events:</h1>
+<ul>
+  <%= link_to "Create new event", new_event_path %>
+  <% @events.each do |event| %>
+    <li><%= render "event_container", event: event %></li>
+  <% end %>
+</ul>
