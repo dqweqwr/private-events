@@ -1,7 +1,14 @@
 <h1>Events:</h1>
+<%= link_to "Create new event", new_event_path %>
+<h2>Upcoming events:</h2>
 <ul>
-  <%= link_to "Create new event", new_event_path %>
-  <% @events.each do |event| %>
+  <% @events.upcoming.each do |event| %>
+    <li><%= render "event_container", event: event %></li>
+  <% end %>
+</ul>
+<h2>Past events:</h2>
+<ul>
+  <% @events.past.each do |event| %>
     <li><%= render "event_container", event: event %></li>
   <% end %>
 </ul>
