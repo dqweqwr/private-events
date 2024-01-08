@@ -5,3 +5,9 @@
     <li><%= render "events/event_container", event: event %></li>
   <% end %>
 </ul>
+<h2>Events user is attending:</h2>
+<ul>
+  <% @user.attended_events.each do |attended_event| %>
+    <li><%= render "events/event_container", event: attended_event %></li>
+  <% end %>
+</ul>

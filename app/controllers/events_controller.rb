@@ -6,6 +6,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @event_attending = EventAttending.new
   end
 
   def new
@@ -26,13 +27,6 @@ class EventsController < ApplicationController
   end
 
   private
-
-  def require_login
-    unless current_user
-      flash[:alert] = "You must log in first"
-      redirect_to new_user_session_path
-    end
-  end
 
   def event_params
     params.require(:event).permit(:title, :description, :location, :date)

@@ -2,3 +2,24 @@
 <div>description: <%= @event.description %></div>
 <div>location: <%= @event.location %></div>
 <div>date: <%= @event.date %></div>
+
+<% if user_signed_in? %>
+  <% if @event.attendees.exclude? current_user %>
+    <%= form_with model: @event_attending,
+                  url: event_attending_index_path,
+                  html: { method: "post" } do |f| %>
+      <%= f.hidden_field :attended_event_id, value: @event.id %>
+      <%= f.hidden_field :attendee_id, value: current_user.id %>
+      <%= f.submit "Attend event" %>
+    <% end %>
+  <% else %>
+    <h4>You are currently attending this event</h4>
+  <% end %>
+<% end %>
+
+<h1>Attendees:</h1>
+<ul>
+  <% @event.attendees.each do |attendee| %>
+    <li><%= attendee.email %></li>
+  <% end %>
+</ul>
